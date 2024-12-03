@@ -1,0 +1,116 @@
+﻿@*@model List<Data.MonDbContext>*@
+@model List<TouteslesAvisViewModel>
+
+
+@{
+    ViewData["Title"] = "Avis Page";
+    //Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<p> ci-dessous les avis des formations</p>
+
+<table class="table table-bordered">
+    <tr class="bg-info">
+        <th>
+            Users
+            <a href="@Url.Action("Index", new { SortBy = "NomUtilisateur", Order = "asc" })">
+                <span class="fas fa-chevron-up" aria-hidden="true"></span>
+            </a>
+            <a href="@Url.Action("Index", new { SortBy = "NomUtilisateur", Order = "desc" })">
+                <span class="fas fa-chevron-down" aria-hidden="false"></span>
+            </a>
+        </th>
+        <th>
+            Commentaire
+            <a href="@Url.Action("Index", new { SortBy = "Commentaire", Order = "asc" })">
+                <span class="fas fa-chevron-up" aria-hidden="true"></span>
+            </a>
+            <a href="@Url.Action("Index", new { SortBy = "Commentaire", Order = "desc" })">
+                <span class="fas fa-chevron-down" aria-hidden="false"></span>
+            </a>
+        </th>
+        <th>
+            Note
+            <a href="@Url.Action("Index", new { SortBy = "Note", Order = "asc" })">
+                <span class="fas fa-chevron-up" aria-hidden="true"></span>
+            </a>
+            <a href="@Url.Action("Index", new { SortBy = "Note", Order = "desc" })">
+                <span class="fas fa-chevron-down" aria-hidden="false"></span>
+            </a>
+        </th>
+        <th>
+            Formation
+            <a href="@Url.Action("Index", new { SortBy = "NomSeo", Order = "asc" })">
+                <span class="fas fa-chevron-up" aria-hidden="true"></span>
+            </a>
+            <a href="@Url.Action("Index", new { SortBy = "NomSeo", Order = "desc" })">
+                <span class="fas fa-chevron-down" aria-hidden="false"></span>
+            </a>
+        </th>
+        <th>Action</
+    </tr>
+
+    @foreach (var avis in Model)
+    {
+        <tr class="avis">
+            <th>@avis.NomUtilisateur</th>
+            <th>@avis.Commentaire</th>
+            <th>
+                @avis.Note
+               @*  @for (int i = 1; i <= avis.Note; i++)
+                {
+                    <span class="fa fa-star oragne"></span>
+                } *@
+
+                @for (var i = avis.Note; i >= 0.5; i--)
+
+                {
+                    if (i == .5)
+                    {
+                        <i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>
+                        @* <span class="fa fa-star-half-empty oragne"></span> *@
+
+                        for (var j = (5 - avis.Note); j >= 1; j--)
+                        {
+                            <i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>
+                        }
+                    }
+                    if (i > .5 && i < 1)
+                    {
+                        <i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>
+                        for (var j = (5 - avis.Note); j >= 1; j--)
+                        {
+                            <i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>
+                        }
+                    }
+                    if (i >= 1)
+                    {
+                        if (i > 1)
+                        {
+                            <i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                        }
+                        if (i == 1)
+                        {
+                            <i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                            for (var j = (5 - avis.Note); j >= 1; j--)
+                            {
+                                <i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>
+                            }
+                        }
+
+                    }
+                   
+
+
+                }
+
+            </th>
+            <th>@avis.NomSeo</th>
+            <td>
+                @Html.ActionLink("Add", "LaisserUnAvis", new { NomSeo = avis.NomSeo }) |
+                @Html.ActionLink("Edit", "Edit", new { Id = avis.Id, NomSeo = avis.NomSeo }) |
+                @Html.ActionLink("Delete", "Delete", new { Id = avis.Id })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "DeleteConfirmed";
+}
+
+<h1>Merci !</h1>
+<p>Votre avis a bien été Supprimé !</p>
+
+<div>
+    @*@Html.ActionLink("BackList", new { controller = "Formation", action = "Index" })*@
+    @Html.ActionLink("BackList", "Index", "Avis")
+</div>

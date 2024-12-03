@@ -1,0 +1,79 @@
+﻿@model AvisFormationsCore.WebUi.Models.DeleteAvisViewModel
+@*@model Data.Avis*@
+
+@{
+    ViewData["Title"] = "Delete Page";
+}
+
+<h4> Etes vous sur de bien vouloir supprimer cet Avis ?</h4>
+
+<br />
+<div class="form-group">
+    <label>Commentaire:</label>
+    @Html.DisplayFor(model => model.Commentaire)
+    @*<input type="text" name="nom" value="@Model.Commentaire" class="form-control" />*@
+</div>
+
+<div class="form-group">
+    <label>Note:</label>
+    @Html.DisplayFor(model => model.Note)
+    @*<input type="text" name="nom" value="@Model.Commentaire" class="form-control" />*@
+</div>
+
+<div class="form-group">
+    <label>NomUtilisateur:</label>
+    @Html.DisplayFor(model => model.NomUtilisateur)
+    @*<input type="text" name="nom" value="@Model.Commentaire" class="form-control" />*@
+</div>
+
+<div class="form-group">
+    <label>Formation:</label>
+    @Html.DisplayFor(model => model.NomFormation)
+    @*<input type="text" name="nom" value="@Model.Commentaire" class="form-control" />*@
+</div>
+
+<form asp-action="DeleteConfirmed">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-action="Index">Back to List</a>
+</form>
+
+
+
+
+@*<div>
+
+        <div class="row">
+            <div class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Commentaire)
+            </div>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Commentaire)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.NomUtilisateur)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.NomUtilisateur)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Formation)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Formation.Nom)
+            </dd class>
+        </div>
+
+        <form asp-action="DeleteConfirmed">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>*@
+

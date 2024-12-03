@@ -1,0 +1,63 @@
+﻿@model AvisFormationsCore.WebUi.Models.EditAvisViewModel
+
+@{
+        ViewData["Title"] = "Edit Page";
+        //Layout = "~/Views/Shared/_Layout2.cshtml";
+ }
+
+<h4>EditAvisViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Commentaire" class="control-label"></label>
+                <input asp-for="Commentaire" class="form-control" />
+                <span asp-validation-for="Commentaire" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomUtilisateur" class="control-label"></label>
+                <input asp-for="NomUtilisateur" class="form-control" />
+                <span asp-validation-for="NomUtilisateur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomSeo" class="control-label"></label>
+                @*<input asp-for="NomSeo" class="form-control" />*@
+                
+                    <select asp-for="NomSeo" asp-items="Model.StatusList"></select>               
+
+                @*<select asp-for="StatusList"
+                     class="form-control"
+                      asp-items="@(new SelectList(Model.StatusList,"StatusList","NomSeo"))"></select>*@
+                <span asp-validation-for="NomSeo" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                @*<label asp-for="FormationId" class="control-label" type="hidden"></label>*@
+                <input asp-for="FormationId" class="form-control" type="hidden"/>
+                <span asp-validation-for="FormationId" class="text-danger" typeof="hidden"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+

@@ -1,0 +1,150 @@
+﻿@model DetailFormationViewModel
+
+@*@model Data.Formation*@
+@{
+    ViewData["Title"] = Model.Formation.Nom;
+}
+
+<h1>@Model.Formation.Nom</h1>
+<p><b>@Model.Formation.Description</b></p>
+
+@if(TempData["Message"] != null)
+{
+    <div class="alert-danger">
+        @TempData["Message"]
+    </div>
+}
+
+<div>La formation est noté: @Model.NoteMoyenne/5
+   @*  @for(int i=1; i<= @Model.NoteMoyenne; i++)
+            {
+                <span class="fa fa-star oragne"></span>
+
+            } *@
+    @for (var i = @Model.NoteMoyenne; i >= 0; i--)
+    {
+
+        if (i == .5)
+        {
+            <i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>
+            @* <span class="fa fa-star-half-empty oragne"></span> *@
+            for (var j = (5 - @Model.NoteMoyenne); j >= 1; j--)
+            {
+                <i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>
+            }
+        }
+        if (i > .5 && i < 1)
+        {
+            <i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>
+            for (var j = (5 - @Model.NoteMoyenne); j >= 1; j--)
+            {
+                <i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>
+            }
+        }
+        if (i >= 1)
+        {
+            if (i > 1)
+            {
+                <i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+            }
+            if (i == 1)
+            {
+                <i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                for (var j = (5 - @Model.NoteMoyenne); j >= 1; j--)
+                {
+                    <i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>
+                }
+            }
+
+        }
+        if(i< 0.5)
+        {
+            <i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>
+            for (var j = (5 - @Model.NoteMoyenne); j >= 1; j--)
+            {
+                <i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>
+            }
+        }
+
+    }
+
+</div>
+
+<p>Voici ce qu'en disent les anciens élèves : </p>
+
+   @foreach (var avis in Model.Formation.Avis)
+    {
+      <div class="avis-block">
+           <div>
+               @avis.Note/5
+
+               @*@for (int i = 1; i <= avis.Note; i++) 
+                 {
+                 <span class="fa fa-star-half-empty oragne"></span> 
+                 } 
+                *@
+
+
+                @* @for (var i = avis.Note; i >= 0.5 || i < 0.5; i--) *@
+                @for (var i = avis.Note; i >= 0.5; i--)
+
+                {
+                        if (i == .5)
+                        {
+                            <i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>
+                            @* <span class="fa fa-star-half-empty oragne"></span> *@
+
+                            for (var j = (5 - avis.Note); j >= 1; j--)
+                            {
+                              <i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>
+                            }
+                        }
+                        if (i > .5 && i < 1)
+                        {
+                          <i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>
+                            for (var j = (5 - avis.Note); j >= 1; j--)
+                            {
+                              <i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>
+                            }
+                        }
+                        if(i>=1)
+                        {
+                            if(i > 1)
+                            {
+                             <i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                            }
+                            if(i == 1)
+                            {
+                             <i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                                for (var j = (5 - avis.Note); j >= 1; j--)
+                                {
+                                    <i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>
+                                }
+                            }
+                            
+                        }
+                      
+
+                     
+                }
+
+                
+           </div>
+         <div><i>@avis.NomUtilisateur</i></div>
+         <div>@avis.Commentaire</div>
+      </div>
+    }
+
+<div>
+    <a asp-controller="Avis"
+       asp-action="LaisserUnAvis"
+       asp-route-nomSeo="@Model.Formation.NomSeo">
+        Laissez un Avis sur la Formation 
+    </a>
+    <br />
+    <a asp-controller="Formation"
+       asp-action="ToutesLesFormations"
+      asp-route-nomSeo=""> 
+        Back to list
+    </a>
+</div>

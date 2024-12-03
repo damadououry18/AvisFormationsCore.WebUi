@@ -1,0 +1,39 @@
+﻿@model List<Data.Formation>
+@{
+    ViewData["Title"] = "ToutesLesFormations";
+}
+<div class="text-center">
+    <h1>Toutes nos Formations</h1>
+</div>
+
+
+<div class="row text-center justify-content-md-center">
+    @foreach (var formation in Model)
+    {
+    <div class="formation-block col-md-6 col-lg-4">
+        @*<a href="/Formation/DetailsFormation?idFormation=@formation.Id"> @formation.Nom </a>*@
+        @*--- ASP .net Core ------*@
+        <a asp-controller="Formation"
+           asp-action="DetailsFormation"
+           asp-route-nomSeo="@formation.NomSeo"> @formation.Nom
+        </a>
+        <div>
+                4.8/5 
+                <span class="fa fa-star" aria-hidden="true" style="color: gold;"></span>
+                <span class="fa fa-star" aria-hidden="true" style="color: gold;"></span>
+                <span class="fa fa-star" aria-hidden="true" style="color: gold;"></span>
+                <span class="fa fa-star" aria-hidden="true" style="color: gold;"></span>
+                <span class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></span>
+        
+        </div>
+        <p>@formation.Description</p>
+    </div>
+            @*---- Aspt #net MVC ----*@
+            @*@Html.ActionLink(formation.Nom,"Formation", new {id = formation.Id}, null)*@
+
+        @*-----|| commenté lors du design|--------
+        <p>Description de la formation :@formation.Description</p>
+        <p>NomSeo de la formation :@formation.NomSeo</p>
+        <br />*@
+    }
+</div>
